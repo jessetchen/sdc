@@ -38,12 +38,12 @@ class Car_Interface():
         All except for the brake_weight should be positive.
         '''
         #Coefficients corresponding to the motion dynamics
-        self.rolling_bias = None
-        self.friction_constant = None
+        self.rolling_bias = 0.0099966077672
+        self.friction_constant = -.109727971
 
-        self.accelerator_weight = None
-        self.brake_weight = None
-        raise Exception("You forgot to input SystemID learned weights in the Controller Model")
+        self.accelerator_weight = .100013340559
+        self.brake_weight = -.250005354302
+        
 
         '''
         If approximating the complex internal model we use a FCN
