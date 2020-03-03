@@ -78,9 +78,26 @@ class Braking_Distance_Estimator():
     '''
     def simple_analytical_sd(self, initial_velocity, amt):
         #CODE HERE: Paste corresponding code from Jupyter Notebook
+        x = ci.brake_weight * amt + ci.rolling_bias
+        f = ci.friction_constant
+        v0 = initial_velocity
+        
+        if (amt < ci.rolling_bias):
+            return float('inf')
+        else:
+            return 1/f * (v0 + x/f * np.log(1-f*v0/x))
 
     def simple_analytical_approx(self, inp, tol = 1e-5, min_amt = 0, max_amt = 1):
         #CODE HERE: Paste corresponding code from Jupyter Notebook
+        mid_amt = (min_amt + max_amt) / 2
+        if (max_amt - min_amt < 2 * tol):
+            return mid_amt
+        
+        asd = simple_analytical_sd(inp[0], mid_amt)
+        if (asd > inp[1]):
+            return simple_analytical_approx(inp, tol, min_amt + 0.1, max_amt)
+        else:
+            return simple_analytical_approx(inp, tol, min_amt, max_amt - 0.1)
 
     #File path to Braking Distance folder
     def bd_fp(self):
