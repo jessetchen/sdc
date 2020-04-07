@@ -8,7 +8,7 @@ import pdb
 import time
 from utils import *
 np.random.seed(0)
-#STEPS is the amount of iterations the algorithm will run for 
+#STEPS is the amount of iterations the algorithm will run for
 #given that it has found a solution by the time that many iterations pass.
 #Try increasing this to see what happens, if you have time.
 STEPS = 4000
@@ -52,8 +52,8 @@ def find_path(start, target, edges, radius=CAR_BUFFER, point_type='map'):
         # In the list of nodes, find the node which is closest to random_point,
         #and find the distance from this closest point to the random_point
         #Put these in minNode and dist, respectively
-        minNode=None #FIXME
-        dist=None #FIXME
+        minNode= nearest(nodes, random_point, radius, edges) #FIXME
+        dist= minNode.distance(random_point) #FIXME
 
         #if we can't connect the random_point and the node closest to it in our tree,
         #then we assume that the random_point is out of our search space and then exit
@@ -87,18 +87,24 @@ def find_path(start, target, edges, radius=CAR_BUFFER, point_type='map'):
         #If N is a better parent for the random_point, then we update random_point's parent and cost
 
         for node in X_n:
-            pass #FIXME
+            newCost = node.distance(random_point) + node.cost
+            if  newCost < random_point.cost:
+                random_point.parent = node
+                random_point.cost = newCost
 
 
         ######################################
         #   THIRD THING YOU HAVE TO FILL-IN   #
         ######################################
         #You need to check, for each of the nodes in X_n, whether random_point
-        # is a better parent for each node than that node's current parent. 
+        # is a better parent for each node than that node's current parent.
         #If random_point is, update the node's parent and cost accordingly
 
         for node in X_n:
-            pass #FIXME
+            newCost = node.distance(random_point) + random_point.cost
+            if  newCost < node.cost:
+                node.parent = random_point
+                node.cost = newCost
 
         #finally, we add the random_point to the list of nodes in our search space
         nodes.append(random_point)
