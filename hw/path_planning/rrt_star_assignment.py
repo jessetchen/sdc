@@ -52,7 +52,10 @@ def find_path(start, target, edges, radius=CAR_BUFFER, point_type='map'):
         # In the list of nodes, find the node which is closest to random_point,
         #and find the distance from this closest point to the random_point
         #Put these in minNode and dist, respectively
-        minNode= nearest(nodes, random_point, radius, edges) #FIXME
+        minNode = nodes[0] #FIXME
+        for x in nodes:
+        	if x.distance(random_point) <= minNode.distance(random_point):
+        		minNode = x
         dist= minNode.distance(random_point) #FIXME
 
         #if we can't connect the random_point and the node closest to it in our tree,
