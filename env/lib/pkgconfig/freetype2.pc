@@ -1,0 +1,14 @@
+prefix=/Users/JesseChen/Desktop/sdc/env
+exec_prefix=/Users/JesseChen/Desktop/sdc/env
+libdir=/Users/JesseChen/Desktop/sdc/env/lib
+includedir=/Users/JesseChen/Desktop/sdc/env/include
+
+Name: FreeType 2
+URL: https://freetype.org
+Description: A free, high-quality, and portable font engine.
+Version: 22.1.16
+Requires:
+Requires.private: zlib, libpng
+Libs: -L${libdir} -lfreetype
+Libs.private: 
+Cflags: -I${includedir}/freetype2
