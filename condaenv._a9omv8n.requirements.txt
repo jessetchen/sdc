@@ -9,5 +9,5 @@ duckietown_slimremote==2018.10.1
 torch==1.4.0
 torchvision
 jupyter
-numpy==1.18.0
+numpy==1.22.0
 tensorflow==2.1
